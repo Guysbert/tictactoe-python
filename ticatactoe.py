@@ -23,7 +23,6 @@ row_nums = {"A": 0, "B": 1, "C": 2}
 
 
 def print_level():
-    print json.dumps(level)
     print "  A B C"
     for row in range(0, len(level)):
         print "%d %s %s %s" % (row + 1, level[row][0], level[row][1], level[row][2])
