@@ -3,6 +3,8 @@ import json
 
 level = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 
+def check_draw():
+    return not any(" " in row for row in level)
 
 def check_diagonal(rows):
     return check_rows([[level[0][0], level[1][1], level[2][2]], [level[0][2], level[1][1], level[2][0]]])
@@ -26,8 +28,6 @@ def print_level():
     print "  A B C"
     for row in range(0, len(level)):
         print "%d %s %s %s" % (row + 1, level[row][0], level[row][1], level[row][2])
-
-
 
 
 def do_move(move, player1):
@@ -55,10 +55,12 @@ while move != "exit":
         move = raw_input("Make your move Player 1: ")
     else:
         move = raw_input("Make your move Player 2: ")
-
     if do_move(move, player1):
         print_level()
         if check_win():
             print "Player 1 wins" if player1 else "Player 2 wins"
+            exit()
+        if check_draw():
+            print "Nobody wins"
             exit()
         player1 = not player1
